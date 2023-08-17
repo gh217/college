@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Assisatnt {
+public class Assistant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +18,7 @@ public class Assisatnt {
             name = "department_assistant",
             joinColumns = @JoinColumn(name = "Assisatnt_id"),
             inverseJoinColumns = @JoinColumn(name = "Department_id"))
-    private Set<Assisatnt> assisatntSet=new HashSet<>();
+    private Set<Assistant> assistantSet =new HashSet<>();
 
     @ManyToMany
     @JoinTable(

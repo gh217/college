@@ -29,7 +29,7 @@ public class Department {
             name = "department_assistant",
             joinColumns = @JoinColumn(name = "Department_id"),
             inverseJoinColumns = @JoinColumn(name = "Assisatnt_id"))
-    private Set<Assisatnt> assisatntSet=new HashSet<>();
+    private Set<Assistant> assistantSet =new HashSet<>();
 
     @ManyToMany
     @JoinTable(
