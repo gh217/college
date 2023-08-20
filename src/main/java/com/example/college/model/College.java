@@ -1,11 +1,13 @@
-package com.example.doctorClinic.model;
+package com.example.college.model;
 
 import jakarta.persistence.*;
 import jdk.dynalink.linker.LinkerServices;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 public class College {
     @Id
@@ -14,7 +16,7 @@ public class College {
 
     private String name;
 
-    @OneToMany(mappedBy = "college")
+    @OneToMany(mappedBy = "college",cascade = CascadeType.ALL)
     private Set<Department> departmentSet=new HashSet<>();
 
 }

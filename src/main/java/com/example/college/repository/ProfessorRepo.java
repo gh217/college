@@ -1,6 +1,6 @@
-package com.example.doctorClinic.repository;
+package com.example.college.repository;
 
-import com.example.doctorClinic.model.Professor;
+import com.example.college.model.Professor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProfessorRepo extends JpaRepository<Professor,Long> {

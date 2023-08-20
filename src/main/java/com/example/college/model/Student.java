@@ -1,8 +1,9 @@
-package com.example.doctorClinic.model;
+package com.example.college.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,13 +16,19 @@ public class Student {
 
     private String name;
 
+    private int birthday;
+
+    private int birthmonth;
+
+    private int birthyear;
+
     @ManyToOne
-    private Department department=new Department();
+    private Department department;
 
     @ManyToMany
     @JoinTable(
             name = "student_course",
             joinColumns = @JoinColumn(name = "Student_id"),
-            inverseJoinColumns = @JoinColumn(name = "Sourse_id"))
+            inverseJoinColumns = @JoinColumn(name = "Course_id"))
     private Set<Course> courseSet = new HashSet<>();
 }

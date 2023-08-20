@@ -1,10 +1,12 @@
-package com.example.doctorClinic.model;
+package com.example.college.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 public class Assistant {
     @Id

@@ -1,4 +1,4 @@
-package com.example.doctorClinic.model;
+package com.example.college.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,6 +12,9 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
+    private String code;
 
     private String name;
 
