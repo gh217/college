@@ -32,7 +32,7 @@ public class StudentService {
 
         if(id==null)throw new NotFound("id null");
         Optional<Student> student=studentRepo.findById(id);
-        if(student.isEmpty())throw new NotFound("this id "+id+"not found");
+        if(student.isEmpty())throw new NotFound("this id "+id+" not found");
 
         student.get().setName(studentUpdateRequest.getName());
         student.get().setBirthmonth(studentUpdateRequest.getBirthmonth());
