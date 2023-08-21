@@ -8,6 +8,7 @@ import com.example.college.model.Department;
 import com.example.college.repository.DepartmentRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,4 +49,10 @@ public class DepartmentService {
         return departmentMapper.toDepartmentResponse(department.get());
     }
 
+    public void deleteById(Long id ){
+        if(id==null)throw new NotFound("Null Id");
+        Optional<Department> department=departmentRepo.findById(id);
+        if(department.isEmpty())throw new NotFound("This Id "+id+" Not Found");
+        departmentRepo.deleteById(id);
+    }
 }

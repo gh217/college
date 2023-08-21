@@ -5,6 +5,8 @@ import com.example.college.dto.DepartmentResponse;
 import com.example.college.service.DepartmentService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
@@ -30,5 +32,11 @@ public class DepartmentController {
     public DepartmentResponse findById(@PathVariable Long id){
         return departmentService.findById(id);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id){
+        departmentService.deleteById(id);
+    }
+    
 
 }
