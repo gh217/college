@@ -3,8 +3,6 @@ package com.example.college.controller;
 import com.example.college.dto.StudentRequest;
 import com.example.college.dto.StudentResponse;
 import com.example.college.dto.StudentUpdateRequest;
-import com.example.college.mapper.StudentMapper;
-import com.example.college.model.Student;
 import com.example.college.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
