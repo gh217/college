@@ -38,6 +38,7 @@ public class StudentService {
         student.get().setBirthmonth(studentUpdateRequest.getBirthmonth());
         student.get().setBirthyear(studentUpdateRequest.getBirthyear());
         student.get().setBirthday(studentUpdateRequest.getBirthday());
+//        student.get().setDepartment(studentUpdateRequest.getDepartment());
 
         student= Optional.of(studentRepo.save(student.get()));
 

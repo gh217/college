@@ -32,12 +32,19 @@ public class DepartmentService {
 
         Optional<Department> department=departmentRepo.findById(id);
 
-        if(department.isEmpty())throw new NotFound("This Id "+id+"Not Found");
+        if(department.isEmpty())throw new NotFound("This Id "+id+" Not Found");
 
         department.get().setName(departmentRequest.getName());
 
         department= Optional.of(departmentRepo.save(department.get()));
 
+        return departmentMapper.toDepartmentResponse(department.get());
+    }
+
+    public DepartmentResponse findById(Long id){
+        if(id==null)throw new NotFound("Null Id");
+        Optional<Department> department=departmentRepo.findById(id);
+        if(department.isEmpty())throw new NotFound("This Id "+id+" Not Found");
         return departmentMapper.toDepartmentResponse(department.get());
     }
 

@@ -26,4 +26,9 @@ public class DepartmentController {
         return departmentService.updateDepartment(id,departmentRequest);
     }
 
+    @GetMapping("/{id}")
+    public DepartmentResponse findById(@PathVariable Long id){
+        return departmentService.findById(id);
+    }
+
 }
