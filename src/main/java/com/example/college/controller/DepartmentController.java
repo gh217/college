@@ -37,6 +37,11 @@ public class DepartmentController {
     public void deleteById(@PathVariable Long id){
         departmentService.deleteById(id);
     }
-    
+
+    @GetMapping
+    public List<DepartmentResponse> findAll(){
+        return departmentService.findAll();
+    }
+
 
 }

@@ -55,4 +55,13 @@ public class DepartmentService {
         if(department.isEmpty())throw new NotFound("This Id "+id+" Not Found");
         departmentRepo.deleteById(id);
     }
+
+    public List<DepartmentResponse> findAll(){
+        List<Department>departmentList=departmentRepo.findAll();
+        if(departmentList.isEmpty())throw new NotFound("No Department");
+
+        return departmentList
+                .stream()
+                .map(departmentMapper::toDepartmentResponse).toList();
+    }
 }
