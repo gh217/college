@@ -27,13 +27,6 @@ public class Course {
 
     @ManyToMany
     @JoinTable(
-            name = "student_course",
-            joinColumns = @JoinColumn(name = "Course_id"),
-            inverseJoinColumns = @JoinColumn(name = "Student_id"))
-    private Set<Student> students = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(
             name = "Professor_course",
             joinColumns = @JoinColumn(name = "Course_id"),
             inverseJoinColumns = @JoinColumn(name = "Professor_id"))
@@ -45,5 +38,8 @@ public class Course {
             joinColumns = @JoinColumn(name = "Course_id"),
             inverseJoinColumns = @JoinColumn(name = "Assisatnt_id"))
     private Set<Course> courseSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "course")
+    private Set<StudentCourse> studentCourses = new HashSet<>();
 
 }

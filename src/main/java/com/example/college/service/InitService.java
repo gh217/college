@@ -33,15 +33,15 @@ public class InitService implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        init();
+        init();
     }
     private void init(){
-//        addCollege();
-//        addDepartment();
-//        addProfessor();
-//        addAssistant();
-//        addCourses();
-//        addStudent();
+        addCollege();
+        addDepartment();
+        addProfessor();
+        addAssistant();
+        addCourses();
+        addStudent();
     }
     private void addCollege(){
         College college=new College();

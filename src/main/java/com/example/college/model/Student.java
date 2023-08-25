@@ -25,10 +25,6 @@ public class Student {
     @ManyToOne
     private Department department;
 
-    @ManyToMany
-    @JoinTable(
-            name = "student_course",
-            joinColumns = @JoinColumn(name = "Student_id"),
-            inverseJoinColumns = @JoinColumn(name = "Course_id"))
-    private Set<Course> courseSet = new HashSet<>();
+    @OneToMany(mappedBy = "student")
+    private Set<StudentCourse> studentCourses = new HashSet<>();
 }

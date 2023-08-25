@@ -26,7 +26,6 @@ public class StudentMapper {
         studentResponse.setBirthmonth(student.getBirthmonth());
         studentResponse.setBirthyear(student.getBirthyear());
         studentResponse.setDepartment(student.getDepartment());
-        studentResponse.setCourseSet(student.getCourseSet());
         return studentResponse;
     }
     public Student toStudent(StudentUpdateRequest studentUpdateRequest){
@@ -39,7 +38,6 @@ public class StudentMapper {
         student.setBirthmonth(studentUpdateRequest.getBirthmonth());
         student.setBirthyear(studentUpdateRequest.getBirthyear());
         student.setDepartment(studentUpdateRequest.getDepartment());
-        student.setCourseSet(studentUpdateRequest.getCourseSet());
         return student;
     }
 
