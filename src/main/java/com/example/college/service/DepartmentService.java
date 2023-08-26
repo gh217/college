@@ -2,7 +2,7 @@ package com.example.college.service;
 
 import com.example.college.dto.DepartmentRequest;
 import com.example.college.dto.DepartmentResponse;
-import com.example.college.exceptions.model.NotFound;
+import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.DepartmentMapper;
 import com.example.college.model.Department;
 import com.example.college.repository.DepartmentRepo;
@@ -29,11 +29,11 @@ public class DepartmentService {
 
     public DepartmentResponse updateDepartment(Long id ,DepartmentRequest departmentRequest){
 
-        if(id==null)throw new NotFound("Null Id");
+        if(id==null)throw new NotFoundException("Null Id");
 
         Optional<Department> department=departmentRepo.findById(id);
 
-        if(department.isEmpty())throw new NotFound("This Id "+id+" Not Found");
+        if(department.isEmpty())throw new NotFoundException("This Id "+id+" Not Found");
 
         department.get().setName(departmentRequest.getName());
 
@@ -43,22 +43,22 @@ public class DepartmentService {
     }
 
     public DepartmentResponse findById(Long id){
-        if(id==null)throw new NotFound("Null Id");
+        if(id==null)throw new NotFoundException("Null Id");
         Optional<Department> department=departmentRepo.findById(id);
-        if(department.isEmpty())throw new NotFound("This Id "+id+" Not Found");
+        if(department.isEmpty())throw new NotFoundException("This Id "+id+" Not Found");
         return departmentMapper.toDepartmentResponse(department.get());
     }
 
     public void deleteById(Long id ){
-        if(id==null)throw new NotFound("Null Id");
+        if(id==null)throw new NotFoundException("Null Id");
         Optional<Department> department=departmentRepo.findById(id);
-        if(department.isEmpty())throw new NotFound("This Id "+id+" Not Found");
+        if(department.isEmpty())throw new NotFoundException("This Id "+id+" Not Found");
         departmentRepo.deleteById(id);
     }
 
     public List<DepartmentResponse> findAll(){
         List<Department>departmentList=departmentRepo.findAll();
-        if(departmentList.isEmpty())throw new NotFound("No Department");
+        if(departmentList.isEmpty())throw new NotFoundException("No Department");
 
         return departmentList
                 .stream()

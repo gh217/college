@@ -3,7 +3,7 @@ package com.example.college.service;
 import com.example.college.dto.StudentRequest;
 import com.example.college.dto.StudentResponse;
 import com.example.college.dto.StudentUpdateRequest;
-import com.example.college.exceptions.model.NotFound;
+import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.StudentMapper;
 import com.example.college.model.Student;
 import com.example.college.repository.StudentRepo;
@@ -30,9 +30,9 @@ public class StudentService {
 
     public StudentResponse update(Long id ,StudentUpdateRequest studentUpdateRequest){
 
-        if(id==null)throw new NotFound("id null");
+        if(id==null)throw new NotFoundException("id null");
         Optional<Student> student=studentRepo.findById(id);
-        if(student.isEmpty())throw new NotFound("this id "+id+" not found");
+        if(student.isEmpty())throw new NotFoundException("this id "+id+" not found");
 
         student.get().setName(studentUpdateRequest.getName());
         student.get().setBirthmonth(studentUpdateRequest.getBirthmonth());
@@ -47,7 +47,7 @@ public class StudentService {
 
     public StudentResponse findById(long id){
         Optional<Student> student=studentRepo.findById(id);
-        if(student.isEmpty())throw new NotFound("This id "+ id+" not found");
+        if(student.isEmpty())throw new NotFoundException("This id "+ id+" not found");
         return studentMapper.toStudentResponse(student.get());
     }
 

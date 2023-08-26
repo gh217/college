@@ -33,7 +33,7 @@ public class InitService implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        init();
+//        init();
     }
     private void init(){
         addCollege();
