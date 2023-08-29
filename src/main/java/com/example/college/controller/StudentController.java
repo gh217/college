@@ -1,8 +1,8 @@
 package com.example.college.controller;
 
-import com.example.college.dto.StudentRequest;
-import com.example.college.dto.StudentResponse;
-import com.example.college.dto.StudentUpdateRequest;
+import com.example.college.dto.StudentRequestDto;
+import com.example.college.dto.StudentResponseDto;
+import com.example.college.dto.StudentUpdateRequestDto;
 import com.example.college.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -20,22 +20,22 @@ public class StudentController {
     }
 
     @PostMapping
-    public StudentResponse add( @RequestBody StudentRequest studentRequest){
-        return studentService.add(studentRequest);
+    public StudentResponseDto add(@RequestBody StudentRequestDto studentRequestDto){
+        return studentService.add(studentRequestDto);
     }
 
     @PutMapping("/{id}")
-    public StudentResponse update(@PathVariable Long id, @RequestBody StudentUpdateRequest studentUpdateRequest){
+    public StudentResponseDto update(@PathVariable Long id, @RequestBody StudentUpdateRequestDto studentUpdateRequest){
         return studentService.update(id,studentUpdateRequest);
     }
 
     @GetMapping("/{id}")
-    public StudentResponse findById(@PathVariable Long id){
+    public StudentResponseDto findById(@PathVariable Long id){
         return studentService.findById(id);
     }
 
     @GetMapping
-    public List<StudentResponse> findAll(){
+    public List<StudentResponseDto> findAll(){
        return studentService.findAll();
     }
 

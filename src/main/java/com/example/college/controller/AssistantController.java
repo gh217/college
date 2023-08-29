@@ -1,6 +1,6 @@
 package com.example.college.controller;
 
-import com.example.college.dto.AssistantRequest;
+import com.example.college.dto.AssistantRequestDto;
 import com.example.college.dto.AssistantResponse;
 import com.example.college.service.AssistantService;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,13 @@ public class AssistantController {
     }
 
     @PostMapping
-    public AssistantResponse AddAssistant(@RequestBody AssistantRequest assistantRequest){
-        return assistantService.addAssistant(assistantRequest);
+    public AssistantResponse AddAssistant(@RequestBody AssistantRequestDto assistantRequestDto){
+        return assistantService.addAssistant(assistantRequestDto);
     }
 
     @PutMapping("/{id}")
-    public AssistantResponse AddAssistant(@PathVariable Long id ,@RequestBody AssistantRequest assistantRequest){
-        return assistantService.updateAssistant(id,assistantRequest);
+    public AssistantResponse AddAssistant(@PathVariable Long id , @RequestBody AssistantRequestDto assistantRequestDto){
+        return assistantService.updateAssistant(id, assistantRequestDto);
     }
 
     @GetMapping("/{id}")

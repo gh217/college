@@ -1,7 +1,7 @@
 package com.example.college.controller;
 
-import com.example.college.dto.DepartmentRequest;
-import com.example.college.dto.DepartmentResponse;
+import com.example.college.dto.DepartmentRequestDto;
+import com.example.college.dto.DepartmentResponseDto;
 import com.example.college.service.DepartmentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,17 +19,17 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public DepartmentResponse addDepartment(@RequestBody DepartmentRequest departmentRequest){
-        return departmentService.addDepartment(departmentRequest);
+    public DepartmentResponseDto addDepartment(@RequestBody DepartmentRequestDto departmentRequestDto){
+        return departmentService.addDepartment(departmentRequestDto);
     }
 
     @PutMapping("/{id}")
-    public DepartmentResponse updateDepartment(@PathVariable Long id,@RequestBody DepartmentRequest departmentRequest){
-        return departmentService.updateDepartment(id,departmentRequest);
+    public DepartmentResponseDto updateDepartment(@PathVariable Long id, @RequestBody DepartmentRequestDto departmentRequestDto){
+        return departmentService.updateDepartment(id, departmentRequestDto);
     }
 
     @GetMapping("/{id}")
-    public DepartmentResponse findById(@PathVariable Long id){
+    public DepartmentResponseDto findById(@PathVariable Long id){
         return departmentService.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class DepartmentController {
     }
 
     @GetMapping
-    public List<DepartmentResponse> findAll(){
+    public List<DepartmentResponseDto> findAll(){
         return departmentService.findAll();
     }
 

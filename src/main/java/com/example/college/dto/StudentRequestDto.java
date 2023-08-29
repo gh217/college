@@ -1,12 +1,10 @@
 package com.example.college.dto;
 
 import lombok.Data;
-import lombok.NonNull;
-import org.springframework.validation.annotation.Validated;
 
 
 @Data
-public class StudentRequest {
+public class StudentRequestDto {
     private String name;
     private int birthday;
     private int birthmonth;

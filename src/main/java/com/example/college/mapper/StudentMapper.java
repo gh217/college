@@ -1,25 +1,25 @@
 package com.example.college.mapper;
 
-import com.example.college.dto.StudentRequest;
-import com.example.college.dto.StudentResponse;
-import com.example.college.dto.StudentUpdateRequest;
+import com.example.college.dto.StudentRequestDto;
+import com.example.college.dto.StudentResponseDto;
+import com.example.college.dto.StudentUpdateRequestDto;
 import com.example.college.model.Student;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StudentMapper {
 
-    public Student toStudent(StudentRequest studentRequest){
+    public Student toStudent(StudentRequestDto studentRequestDto){
         Student student=new Student();
-        student.setName(studentRequest.getName());
-        student.setBirthday(studentRequest.getBirthday());
-        student.setBirthmonth(studentRequest.getBirthmonth());
-        student.setBirthyear(studentRequest.getBirthyear());
+        student.setName(studentRequestDto.getName());
+        student.setBirthday(studentRequestDto.getBirthday());
+        student.setBirthmonth(studentRequestDto.getBirthmonth());
+        student.setBirthyear(studentRequestDto.getBirthyear());
         return student;
     }
 
-    public StudentResponse toStudentResponse(Student student){
-        StudentResponse studentResponse=new StudentResponse();
+    public StudentResponseDto toStudentResponse(Student student){
+        StudentResponseDto studentResponse=new StudentResponseDto();
         studentResponse.setId(student.getId());
         studentResponse.setName(student.getName());
         studentResponse.setBirthday(student.getBirthday());
@@ -28,7 +28,7 @@ public class StudentMapper {
         studentResponse.setDepartment(student.getDepartment());
         return studentResponse;
     }
-    public Student toStudent(StudentUpdateRequest studentUpdateRequest){
+    public Student toStudent(StudentUpdateRequestDto studentUpdateRequest){
 
         Student student=new Student();
 

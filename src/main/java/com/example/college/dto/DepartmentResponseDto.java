@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-public class DepartmentResponse {
+public class DepartmentResponseDto {
     private Long id;
     private String name;
     private College college;

@@ -1,8 +1,8 @@
 package com.example.college.service;
 
-import com.example.college.dto.StudentRequest;
-import com.example.college.dto.StudentResponse;
-import com.example.college.dto.StudentUpdateRequest;
+import com.example.college.dto.StudentRequestDto;
+import com.example.college.dto.StudentResponseDto;
+import com.example.college.dto.StudentUpdateRequestDto;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.StudentMapper;
 import com.example.college.model.Student;
@@ -23,12 +23,12 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
-    public StudentResponse add(StudentRequest studentRequest){
-        Student student=studentRepo.save(studentMapper.toStudent(studentRequest));
+    public StudentResponseDto add(StudentRequestDto studentRequestDto){
+        Student student=studentRepo.save(studentMapper.toStudent(studentRequestDto));
         return studentMapper.toStudentResponse(student);
     }
 
-    public StudentResponse update(Long id ,StudentUpdateRequest studentUpdateRequest){
+    public StudentResponseDto update(Long id , StudentUpdateRequestDto studentUpdateRequest){
 
         if(id==null)throw new NotFoundException("id null");
         Optional<Student> student=studentRepo.findById(id);
@@ -45,13 +45,13 @@ public class StudentService {
         return studentMapper.toStudentResponse(student.get());
     }
 
-    public StudentResponse findById(long id){
+    public StudentResponseDto findById(long id){
         Optional<Student> student=studentRepo.findById(id);
         if(student.isEmpty())throw new NotFoundException("This id "+ id+" not found");
         return studentMapper.toStudentResponse(student.get());
     }
 
-    public List<StudentResponse> findAll(){
+    public List<StudentResponseDto> findAll(){
         return studentRepo.findAll()
                 .stream()
                 .map(studentMapper::toStudentResponse)

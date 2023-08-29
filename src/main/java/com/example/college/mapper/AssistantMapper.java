@@ -1,6 +1,6 @@
 package com.example.college.mapper;
 
-import com.example.college.dto.AssistantRequest;
+import com.example.college.dto.AssistantRequestDto;
 import com.example.college.dto.AssistantResponse;
 import com.example.college.model.Assistant;
 import org.springframework.stereotype.Component;
@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class AssistantMapper {
 
-    public Assistant toAssistant(AssistantRequest assistantRequest){
+    public Assistant toAssistant(AssistantRequestDto assistantRequestDto){
         Assistant assistant=new Assistant();
-        assistant.setName(assistantRequest.getName());
+        assistant.setName(assistantRequestDto.getName());
         return assistant;
     }
 
     public AssistantResponse toAssistantResponse(Assistant assistant){
-        AssistantResponse assistantResponse=new AssistantResponse();
-        assistantResponse.setId(assistant.getId());
-        assistantResponse.setName(assistant.getName());
-        assistantResponse.setCourseSet(assistant.getCourseSet());
-        return assistantResponse;
+        AssistantResponse assistantResponseDto =new AssistantResponse();
+        assistantResponseDto.setId(assistant.getId());
+        assistantResponseDto.setName(assistant.getName());
+        assistantResponseDto.setCourseSet(assistant.getCourseSet());
+        return assistantResponseDto;
     }
 }

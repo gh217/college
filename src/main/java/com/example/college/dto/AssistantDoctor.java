@@ -6,13 +6,12 @@ import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
+
 @Data
-public abstract class StudentCommon {
-    private long id;
+public abstract class AssistantDoctor {
+
+    private Long id;
     private String name;
-    private int birthday;
-    private int birthmonth;
-    private int birthyear;
-    private Department department;
     private Set<Course> courseSet = new HashSet<>();
+    private Set<Department> departmentSet = new HashSet<>();
 }

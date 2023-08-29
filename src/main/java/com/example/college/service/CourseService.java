@@ -1,7 +1,7 @@
 package com.example.college.service;
 
-import com.example.college.dto.CourseRequest;
-import com.example.college.dto.CourseResponse;
+import com.example.college.dto.CourseRequestDto;
+import com.example.college.dto.CourseResponseDto;
 import com.example.college.exceptions.model.DublicateException;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.CourseMapper;
@@ -25,13 +25,13 @@ public class CourseService {
         this.courseMapper = courseMapper;
     }
 
-    public CourseResponse addCourse(CourseRequest courseRequest){
+    public CourseResponseDto addCourse(CourseRequestDto courseRequestDto){
 
         try {
-            Course course=courseRepo.save(courseMapper.toCourse(courseRequest));
+            Course course=courseRepo.save(courseMapper.toCourse(courseRequestDto));
             return courseMapper.toCourseResponse(course);
         }catch (Exception exception){
-            throw new DublicateException("this code "+ courseRequest.getCode() +" exist");
+            throw new DublicateException("this code "+ courseRequestDto.getCode() +" exist");
         }
     }
 
@@ -41,13 +41,13 @@ public class CourseService {
         courseRepo.deleteById(id);
     }
 
-    public CourseResponse findCourseById(Long id){
+    public CourseResponseDto findCourseById(Long id){
         Optional<Course> course=courseRepo.findById(id);
         if(course.isEmpty())throw new NotFoundException("this Course ID "+id+" Not found");
         return courseMapper.toCourseResponse(course.get());
     }
 
-    public List<CourseResponse> findAllCourse(){
+    public List<CourseResponseDto> findAllCourse(){
         List<Course>courseList=courseRepo.findAll();
         if(courseList.isEmpty())throw new NotFoundException("No Assistant");
         return courseList

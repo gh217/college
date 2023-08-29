@@ -1,12 +1,11 @@
 package com.example.college.service;
 
-import com.example.college.dto.AssistantRequest;
+import com.example.college.dto.AssistantRequestDto;
 import com.example.college.dto.AssistantResponse;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.AssistantMapper;
 import com.example.college.model.Assistant;
 import com.example.college.repository.AssistantRepo;
-import jdk.dynalink.linker.LinkerServices;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,14 +23,14 @@ public class AssistantService {
         this.assistantMapper = assistantMapper;
     }
 
-    public AssistantResponse addAssistant(AssistantRequest assistantRequest){
-        Assistant assistant=assistantRepo.save(assistantMapper.toAssistant(assistantRequest));
+    public AssistantResponse addAssistant(AssistantRequestDto assistantRequestDto){
+        Assistant assistant=assistantRepo.save(assistantMapper.toAssistant(assistantRequestDto));
         return assistantMapper.toAssistantResponse(assistant);
     }
 
-    public AssistantResponse updateAssistant(Long id , AssistantRequest assistantRequest){
+    public AssistantResponse updateAssistant(Long id , AssistantRequestDto assistantRequestDto){
         Assistant assistant=checkAssistantById(id);
-        assistant.setName(assistantRequest.getName());
+        assistant.setName(assistantRequestDto.getName());
         assistant= assistantRepo.save(assistant);
 
         return assistantMapper.toAssistantResponse(assistant);

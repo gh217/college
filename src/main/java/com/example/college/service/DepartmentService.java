@@ -1,7 +1,7 @@
 package com.example.college.service;
 
-import com.example.college.dto.DepartmentRequest;
-import com.example.college.dto.DepartmentResponse;
+import com.example.college.dto.DepartmentRequestDto;
+import com.example.college.dto.DepartmentResponseDto;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.DepartmentMapper;
 import com.example.college.model.Department;
@@ -22,12 +22,12 @@ public class DepartmentService {
         this.departmentMapper = departmentMapper;
     }
 
-    public DepartmentResponse addDepartment(DepartmentRequest departmentRequest){
-        Department department =departmentRepo.save(departmentMapper.toDepartment(departmentRequest));
+    public DepartmentResponseDto addDepartment(DepartmentRequestDto departmentRequestDto){
+        Department department =departmentRepo.save(departmentMapper.toDepartment(departmentRequestDto));
         return departmentMapper.toDepartmentResponse(department);
     }
 
-    public DepartmentResponse updateDepartment(Long id ,DepartmentRequest departmentRequest){
+    public DepartmentResponseDto updateDepartment(Long id , DepartmentRequestDto departmentRequestDto){
 
         if(id==null)throw new NotFoundException("Null Id");
 
@@ -35,14 +35,14 @@ public class DepartmentService {
 
         if(department.isEmpty())throw new NotFoundException("This Id "+id+" Not Found");
 
-        department.get().setName(departmentRequest.getName());
+        department.get().setName(departmentRequestDto.getName());
 
         department= Optional.of(departmentRepo.save(department.get()));
 
         return departmentMapper.toDepartmentResponse(department.get());
     }
 
-    public DepartmentResponse findById(Long id){
+    public DepartmentResponseDto findById(Long id){
         if(id==null)throw new NotFoundException("Null Id");
         Optional<Department> department=departmentRepo.findById(id);
         if(department.isEmpty())throw new NotFoundException("This Id "+id+" Not Found");
@@ -56,7 +56,7 @@ public class DepartmentService {
         departmentRepo.deleteById(id);
     }
 
-    public List<DepartmentResponse> findAll(){
+    public List<DepartmentResponseDto> findAll(){
         List<Department>departmentList=departmentRepo.findAll();
         if(departmentList.isEmpty())throw new NotFoundException("No Department");
 
