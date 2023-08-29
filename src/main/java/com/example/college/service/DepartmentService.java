@@ -24,7 +24,7 @@ public class DepartmentService {
 
     public DepartmentResponseDto addDepartment(DepartmentRequestDto departmentRequestDto){
         Department department =departmentRepo.save(departmentMapper.toDepartment(departmentRequestDto));
-        return departmentMapper.toDepartmentResponse(department);
+        return departmentMapper.toDepartmentResponseDto(department);
     }
 
     public DepartmentResponseDto updateDepartment(Long id , DepartmentRequestDto departmentRequestDto){
@@ -39,14 +39,14 @@ public class DepartmentService {
 
         department= Optional.of(departmentRepo.save(department.get()));
 
-        return departmentMapper.toDepartmentResponse(department.get());
+        return departmentMapper.toDepartmentResponseDto(department.get());
     }
 
     public DepartmentResponseDto findById(Long id){
         if(id==null)throw new NotFoundException("Null Id");
         Optional<Department> department=departmentRepo.findById(id);
         if(department.isEmpty())throw new NotFoundException("This Id "+id+" Not Found");
-        return departmentMapper.toDepartmentResponse(department.get());
+        return departmentMapper.toDepartmentResponseDto(department.get());
     }
 
     public void deleteById(Long id ){
@@ -62,6 +62,6 @@ public class DepartmentService {
 
         return departmentList
                 .stream()
-                .map(departmentMapper::toDepartmentResponse).toList();
+                .map(departmentMapper::toDepartmentResponseDto).toList();
     }
 }

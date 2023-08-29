@@ -1,7 +1,7 @@
 package com.example.college.service;
 
 import com.example.college.dto.AssistantRequestDto;
-import com.example.college.dto.AssistantResponse;
+import com.example.college.dto.AssistantResponseDto;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.AssistantMapper;
 import com.example.college.model.Assistant;
@@ -23,29 +23,29 @@ public class AssistantService {
         this.assistantMapper = assistantMapper;
     }
 
-    public AssistantResponse addAssistant(AssistantRequestDto assistantRequestDto){
+    public AssistantResponseDto addAssistant(AssistantRequestDto assistantRequestDto){
         Assistant assistant=assistantRepo.save(assistantMapper.toAssistant(assistantRequestDto));
-        return assistantMapper.toAssistantResponse(assistant);
+        return assistantMapper.toAssistantResponseDto(assistant);
     }
 
-    public AssistantResponse updateAssistant(Long id , AssistantRequestDto assistantRequestDto){
+    public AssistantResponseDto updateAssistant(Long id , AssistantRequestDto assistantRequestDto){
         Assistant assistant=checkAssistantById(id);
         assistant.setName(assistantRequestDto.getName());
         assistant= assistantRepo.save(assistant);
 
-        return assistantMapper.toAssistantResponse(assistant);
+        return assistantMapper.toAssistantResponseDto(assistant);
     }
 
-    public AssistantResponse findAssistantById(Long id){
+    public AssistantResponseDto findAssistantById(Long id){
         Assistant assistant=checkAssistantById(id);
-        return assistantMapper.toAssistantResponse(assistant);
+        return assistantMapper.toAssistantResponseDto(assistant);
     }
 
-    public List<AssistantResponse> findAllAssistant(){
+    public List<AssistantResponseDto> findAllAssistant(){
         List<Assistant>assistants=assistantRepo.findAll();
         if(assistants.isEmpty())throw new NotFoundException("Empty");
         return assistants.stream()
-                .map(assistantMapper::toAssistantResponse)
+                .map(assistantMapper::toAssistantResponseDto)
                 .toList();
     }
 

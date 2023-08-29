@@ -18,7 +18,7 @@ public class StudentMapper {
         return student;
     }
 
-    public StudentResponseDto toStudentResponse(Student student){
+    public StudentResponseDto toStudentResponseDto(Student student){
         StudentResponseDto studentResponse=new StudentResponseDto();
         studentResponse.setId(student.getId());
         studentResponse.setName(student.getName());

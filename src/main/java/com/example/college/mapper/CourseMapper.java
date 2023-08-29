@@ -15,7 +15,7 @@ public class CourseMapper {
         return course;
     }
 
-    public CourseResponseDto toCourseResponse(Course course){
+    public CourseResponseDto toCourseResponseDto(Course course){
         CourseResponseDto courseResponseDto =new CourseResponseDto();
         courseResponseDto.setId(course.getId());
         courseResponseDto.setCode(course.getCode());

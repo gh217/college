@@ -25,7 +25,7 @@ public class StudentService {
 
     public StudentResponseDto add(StudentRequestDto studentRequestDto){
         Student student=studentRepo.save(studentMapper.toStudent(studentRequestDto));
-        return studentMapper.toStudentResponse(student);
+        return studentMapper.toStudentResponseDto(student);
     }
 
     public StudentResponseDto update(Long id , StudentUpdateRequestDto studentUpdateRequest){
@@ -42,19 +42,19 @@ public class StudentService {
 
         student= Optional.of(studentRepo.save(student.get()));
 
-        return studentMapper.toStudentResponse(student.get());
+        return studentMapper.toStudentResponseDto(student.get());
     }
 
     public StudentResponseDto findById(long id){
         Optional<Student> student=studentRepo.findById(id);
         if(student.isEmpty())throw new NotFoundException("This id "+ id+" not found");
-        return studentMapper.toStudentResponse(student.get());
+        return studentMapper.toStudentResponseDto(student.get());
     }
 
     public List<StudentResponseDto> findAll(){
         return studentRepo.findAll()
                 .stream()
-                .map(studentMapper::toStudentResponse)
+                .map(studentMapper::toStudentResponseDto)
                 .toList();
     }
 }

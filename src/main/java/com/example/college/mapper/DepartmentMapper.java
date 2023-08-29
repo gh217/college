@@ -14,7 +14,7 @@ public class DepartmentMapper {
         return department;
     }
 
-    public DepartmentResponseDto toDepartmentResponse(Department department){
+    public DepartmentResponseDto toDepartmentResponseDto(Department department){
         DepartmentResponseDto departmentResponseDto =new DepartmentResponseDto();
         departmentResponseDto.setId(department.getId());
         departmentResponseDto.setName(department.getName());

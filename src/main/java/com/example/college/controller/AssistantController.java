@@ -1,7 +1,7 @@
 package com.example.college.controller;
 
 import com.example.college.dto.AssistantRequestDto;
-import com.example.college.dto.AssistantResponse;
+import com.example.college.dto.AssistantResponseDto;
 import com.example.college.service.AssistantService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,23 +18,23 @@ public class AssistantController {
     }
 
     @PostMapping
-    public AssistantResponse AddAssistant(@RequestBody AssistantRequestDto assistantRequestDto){
+    public AssistantResponseDto AddAssistant(@RequestBody AssistantRequestDto assistantRequestDto){
         return assistantService.addAssistant(assistantRequestDto);
     }
 
     @PutMapping("/{id}")
-    public AssistantResponse AddAssistant(@PathVariable Long id , @RequestBody AssistantRequestDto assistantRequestDto){
+    public AssistantResponseDto updateAssistant(@PathVariable Long id , @RequestBody AssistantRequestDto assistantRequestDto){
         return assistantService.updateAssistant(id, assistantRequestDto);
     }
 
     @GetMapping("/{id}")
-    public AssistantResponse AddAssistant(@PathVariable Long id ){
+    public AssistantResponseDto AddAssistant(@PathVariable Long id ){
         return assistantService.findAssistantById(id);
     }
 
 
     @GetMapping()
-    public List<AssistantResponse> findAllAssistant(){
+    public List<AssistantResponseDto> findAllAssistant(){
         return assistantService.findAllAssistant();
     }
 

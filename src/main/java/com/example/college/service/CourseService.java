@@ -29,7 +29,7 @@ public class CourseService {
 
         try {
             Course course=courseRepo.save(courseMapper.toCourse(courseRequestDto));
-            return courseMapper.toCourseResponse(course);
+            return courseMapper.toCourseResponseDto(course);
         }catch (Exception exception){
             throw new DublicateException("this code "+ courseRequestDto.getCode() +" exist");
         }
@@ -44,7 +44,7 @@ public class CourseService {
     public CourseResponseDto findCourseById(Long id){
         Optional<Course> course=courseRepo.findById(id);
         if(course.isEmpty())throw new NotFoundException("this Course ID "+id+" Not found");
-        return courseMapper.toCourseResponse(course.get());
+        return courseMapper.toCourseResponseDto(course.get());
     }
 
     public List<CourseResponseDto> findAllCourse(){
@@ -52,7 +52,7 @@ public class CourseService {
         if(courseList.isEmpty())throw new NotFoundException("No Assistant");
         return courseList
                 .stream()
-                .map(courseMapper::toCourseResponse)
+                .map(courseMapper::toCourseResponseDto)
                 .toList();
     }
 
