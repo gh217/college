@@ -21,6 +21,6 @@ public class ExceptionController {
     public ResponseEntity<ErrorResponseApiException>dublicate(DublicateException dublicateException){
         ErrorResponseApiException errorResponseApiException =new ErrorResponseApiException();
         errorResponseApiException.setError(dublicateException.getMessage());
-        return new ResponseEntity<>(errorResponseApiException, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorResponseApiException, HttpStatus.CONFLICT);
     }
 }

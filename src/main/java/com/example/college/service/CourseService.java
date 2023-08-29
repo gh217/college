@@ -36,7 +36,6 @@ public class CourseService {
     }
 
     public void deleteCourse(Long id){
-        log.info(id+" "+"deleteCourse");
         Optional<Course> course=courseRepo.findById(id);
         if(course.isEmpty())throw new NotFoundException("this Course ID" + id +"Not found");
         courseRepo.deleteById(id);
@@ -50,7 +49,7 @@ public class CourseService {
 
     public List<CourseResponse> findAllCourse(){
         List<Course>courseList=courseRepo.findAll();
-        if(courseList.isEmpty())throw new NotFoundException("No Course");
+        if(courseList.isEmpty())throw new NotFoundException("No Assistant");
         return courseList
                 .stream()
                 .map(courseMapper::toCourseResponse)

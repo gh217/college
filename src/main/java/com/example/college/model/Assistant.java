@@ -20,7 +20,7 @@ public class Assistant {
             name = "department_assistant",
             joinColumns = @JoinColumn(name = "Assisatnt_id"),
             inverseJoinColumns = @JoinColumn(name = "Department_id"))
-    private Set<Assistant> assistantSet =new HashSet<>();
+    private Set<Department> departmentSet =new HashSet<>();
 
     @ManyToMany
     @JoinTable(
