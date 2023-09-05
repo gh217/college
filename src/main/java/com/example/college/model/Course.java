@@ -1,12 +1,16 @@
 package com.example.college.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Setter
+@Getter
 @Entity
 public class Course {
     @Id
@@ -39,7 +43,8 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "Assisatnt_id"))
     private Set<Course> courseSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "course")
+    @JsonIgnore
+    @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST)
     private Set<StudentCourse> studentCourses = new HashSet<>();
 
 }

@@ -4,10 +4,21 @@ import com.example.college.dto.StudentRequestDto;
 import com.example.college.dto.StudentResponseDto;
 import com.example.college.dto.StudentUpdateRequestDto;
 import com.example.college.model.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
+@Slf4j
 public class StudentMapper {
+
+
+    private final CourseMapper courseMapper;
+
+    public StudentMapper(CourseMapper courseMapper) {
+        this.courseMapper = courseMapper;
+    }
 
     public Student toStudent(StudentRequestDto studentRequestDto){
         Student student=new Student();
@@ -25,7 +36,12 @@ public class StudentMapper {
         studentResponse.setBirthday(student.getBirthday());
         studentResponse.setBirthmonth(student.getBirthmonth());
         studentResponse.setBirthyear(student.getBirthyear());
+
+        log.info(student.getStudentCourses()+"  hh");
         studentResponse.setDepartment(student.getDepartment());
+        studentResponse.setCourseResponseDtos(student.getStudentCourses().stream().map(studentCourse ->courseMapper.toCourseResponseDto( studentCourse.getCourse())).collect(Collectors.toSet()));
+
+        log.info(student.getStudentCourses()+" ");
         return studentResponse;
     }
     public Student toStudent(StudentUpdateRequestDto studentUpdateRequest){

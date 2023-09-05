@@ -9,6 +9,7 @@ import java.util.Set;
 @Data
 @Entity
 public class Assistant {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
