@@ -37,11 +37,12 @@ public class StudentMapper {
         studentResponse.setBirthmonth(student.getBirthmonth());
         studentResponse.setBirthyear(student.getBirthyear());
 
-        log.info(student.getStudentCourses()+"  hh");
         studentResponse.setDepartment(student.getDepartment());
-        studentResponse.setCourseResponseDtos(student.getStudentCourses().stream().map(studentCourse ->courseMapper.toCourseResponseDto( studentCourse.getCourse())).collect(Collectors.toSet()));
+        studentResponse.setCourseResponseDtos(student.getStudentCourses()
+                .stream()
+                .map(studentCourse -> courseMapper.toCourseResponseDto(studentCourse.getCourse()))
+                .collect(Collectors.toSet()));
 
-        log.info(student.getStudentCourses()+" ");
         return studentResponse;
     }
     public Student toStudent(StudentUpdateRequestDto studentUpdateRequest){

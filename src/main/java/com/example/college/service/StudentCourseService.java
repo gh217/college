@@ -45,5 +45,14 @@ public class StudentCourseService {
         studentRepository.save(student.get());
 
     }
+    public void deleteByStudentIdAndCourseId(Long studentId, Long courseId){
+        Optional<Student> student = studentRepository.findById(studentId);
+        Optional<Course> course = courseRepository.findById(courseId);
+        if(student.isEmpty())throw new NotFoundException("Id Student Not found");
+        if(course.isEmpty())throw new NotFoundException("Id Course Not found");
+
+        studentCourseRepo.deleteByStudentIdAndCourseId(studentId,courseId);
+
+    }
 
 }

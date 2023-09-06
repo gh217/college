@@ -14,7 +14,12 @@ public class StudentCourseController {
     }
 
     @PostMapping("/{studentId}/{courseId}")
-    public void addCourseToStudent(@PathVariable Long studentId ,@PathVariable Long courseId){
-        studentCourseService.addCourse(studentId,courseId);
+    public void addCourseToStudent(@PathVariable Long studentId ,@PathVariable Long courseId) {
+        studentCourseService.addCourse(studentId, courseId);
+    }
+
+    @DeleteMapping("/{studentId}/{courseId}")
+    public void deleteCourseFromStudent(@PathVariable Long studentId ,@PathVariable Long courseId) {
+        studentCourseService.deleteByStudentIdAndCourseId(studentId, courseId);
     }
 }
