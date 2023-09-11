@@ -22,4 +22,6 @@ public class StudentCourseController {
     public void deleteCourseFromStudent(@PathVariable Long studentId ,@PathVariable Long courseId) {
         studentCourseService.deleteByStudentIdAndCourseId(studentId, courseId);
     }
+
+
 }

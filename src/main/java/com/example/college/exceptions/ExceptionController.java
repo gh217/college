@@ -3,6 +3,7 @@ package com.example.college.exceptions;
 import com.example.college.exceptions.model.DublicateException;
 import com.example.college.exceptions.model.ErrorResponseApiException;
 import com.example.college.exceptions.model.NotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,5 +23,10 @@ public class ExceptionController {
         ErrorResponseApiException errorResponseApiException =new ErrorResponseApiException();
         errorResponseApiException.setError(dublicateException.getMessage());
         return new ResponseEntity<>(errorResponseApiException, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> stringResponseEntity(DataIntegrityViolationException exception){
+        return new ResponseEntity<>("duplicate Data", HttpStatus.CONFLICT);
     }
 }

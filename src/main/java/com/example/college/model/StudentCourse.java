@@ -6,6 +6,9 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table( uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"student_id", "course_id"})
+})
 public class StudentCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +26,8 @@ public class StudentCourse {
     private Course course;
 
     private Double degree;
+
+    @Enumerated(EnumType.STRING)
+    StudentCourseStatus studentCourseStatus=StudentCourseStatus.PENDING;
+
 }

@@ -26,26 +26,28 @@ public class StudentCourseService {
         this.studentCourseRepo = studentCourseRepo;
     }
 
-    public void addCourse(Long studentId , Long courseId){
-        Optional<Student> student = studentRepository.findById(studentId);
-        Optional<Course> course = courseRepository.findById(courseId);
-        if(student.isEmpty())throw new NotFoundException("Id Student Not found");
-        if(course.isEmpty())throw new NotFoundException("Id Course Not found");
+    public void addCourse(Long studentId , Long courseId) {
 
-        StudentCourse studentCourse=new StudentCourse();
-        studentCourse.setCourse(course.get());
-        studentCourse.setStudent(student.get());
+           Optional<Student> student = studentRepository.findById(studentId);
+           Optional<Course> course = courseRepository.findById(courseId);
+           if(student.isEmpty())throw new NotFoundException("Id Student Not found");
+           if(course.isEmpty())throw new NotFoundException("Id Course Not found");
 
-        studentCourse=
-                studentCourseRepo.save(studentCourse);
-        course.get().getStudentCourses().add(studentCourse);
-        student.get().getStudentCourses().add(studentCourse);
+           StudentCourse studentCourse=new StudentCourse();
+           studentCourse.setCourse(course.get());
+           studentCourse.setStudent(student.get());
 
-        studentCourseRepo.save(studentCourse);
-        studentRepository.save(student.get());
+           studentCourse=
+                   studentCourseRepo.save(studentCourse);
+           course.get().getStudentCourses().add(studentCourse);
+           student.get().getStudentCourses().add(studentCourse);
+
+           studentCourseRepo.save(studentCourse);
+           studentRepository.save(student.get());
 
     }
-    public void deleteByStudentIdAndCourseId(Long studentId, Long courseId){
+    public void deleteByStudentIdAndCourseId
+            (Long studentId, Long courseId){
         Optional<Student> student = studentRepository.findById(studentId);
         Optional<Course> course = courseRepository.findById(courseId);
         if(student.isEmpty())throw new NotFoundException("Id Student Not found");
