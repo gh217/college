@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -29,5 +30,9 @@ public interface StudentCourseRepo extends JpaRepository<StudentCourse,Long> {
 
     @Query("SELECT COUNT(s) FROM StudentCourse s WHERE s.studentCourseStatus = 'PENDING' and s.student.id= :studentId")
     Integer countStudentsWithPendingCourseStatus(Long studentId);
+
+
+    @Query("SELECT sc FROM StudentCourse sc WHERE sc.student.id = :studentId")
+    List<StudentCourse> studentCourse( Long studentId);
 
 }

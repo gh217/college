@@ -20,6 +20,8 @@ public class CourseMapper {
         courseResponseDto.setId(course.getId());
         courseResponseDto.setCode(course.getCode());
         courseResponseDto.setName(course.getName());
+
         return courseResponseDto;
     }
+
 }

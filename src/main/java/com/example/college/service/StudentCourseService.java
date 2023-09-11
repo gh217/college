@@ -1,8 +1,10 @@
 package com.example.college.service;
 
+import com.example.college.dto.StudentCourseResponseDto;
 import com.example.college.exceptions.model.CoursePendingLimitedException;
 import com.example.college.exceptions.model.DuplicateException;
 import com.example.college.exceptions.model.NotFoundException;
+import com.example.college.mapper.StudentCourseMapper;
 import com.example.college.model.Course;
 import com.example.college.model.Student;
 import com.example.college.model.StudentCourse;
@@ -13,6 +15,7 @@ import com.example.college.repository.StudentRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,11 +27,14 @@ public class StudentCourseService {
 
     private final StudentCourseRepo studentCourseRepo;
 
+    private final StudentCourseMapper studentCourseMapper;
 
-    public StudentCourseService(StudentRepo studentRepository, CourseRepo courseRepository, StudentCourseRepo studentCourseRepo) {
+
+    public StudentCourseService(StudentRepo studentRepository, CourseRepo courseRepository, StudentCourseRepo studentCourseRepo, StudentCourseMapper studentCourseMapper) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.studentCourseRepo = studentCourseRepo;
+        this.studentCourseMapper = studentCourseMapper;
     }
 
     public void addCourse(Long studentId , Long courseId) {
@@ -97,4 +103,13 @@ public class StudentCourseService {
 
         studentCourseRepo.save(studentCourse.get());
     }
+
+    public List<StudentCourseResponseDto> studentCourseList(Long studentId){
+        List<StudentCourse> studentCourseList= studentCourseRepo.studentCourse(studentId);
+        return studentCourseList
+                .stream()
+                .map(studentCourseMapper::toStudentCourseResponseDto)
+                .toList();
+    }
+    
 }
