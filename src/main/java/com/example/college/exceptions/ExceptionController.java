@@ -1,6 +1,7 @@
 package com.example.college.exceptions;
 
-import com.example.college.exceptions.model.DublicateException;
+import com.example.college.exceptions.model.CoursePendingLimitedException;
+import com.example.college.exceptions.model.DuplicateException;
 import com.example.college.exceptions.model.ErrorResponseApiException;
 import com.example.college.exceptions.model.NotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -19,14 +20,21 @@ public class ExceptionController {
         return new ResponseEntity<>(errorResponseApiException, HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler
-    public ResponseEntity<ErrorResponseApiException>dublicate(DublicateException dublicateException){
+    public ResponseEntity<ErrorResponseApiException>dublicate(DuplicateException duplicateException){
         ErrorResponseApiException errorResponseApiException =new ErrorResponseApiException();
-        errorResponseApiException.setError(dublicateException.getMessage());
+        errorResponseApiException.setError(duplicateException.getMessage());
         return new ResponseEntity<>(errorResponseApiException, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler
     public ResponseEntity<String> stringResponseEntity(DataIntegrityViolationException exception){
         return new ResponseEntity<>("duplicate Data", HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseApiException>courseLimited(CoursePendingLimitedException coursePendingLimitedException){
+        ErrorResponseApiException errorResponseApiException =new ErrorResponseApiException();
+        errorResponseApiException.setError(coursePendingLimitedException.getMessage());
+        return new ResponseEntity<>(errorResponseApiException, HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
     }
 }

@@ -81,6 +81,11 @@ public class InitService implements CommandLineRunner {
         pairs.add(new Pair<>("java","java2"));
         pairs.add(new Pair<>("pyp","pyp3"));
         pairs.add(new Pair<>("intro","intro1"));
+        pairs.add(new Pair<>("t5","t5"));
+        pairs.add(new Pair<>("t6","t6"));
+        pairs.add(new Pair<>("t7","t7"));
+
+
 
         for (Pair<String,String> pair : pairs){
             Course course=new Course();

@@ -2,7 +2,7 @@ package com.example.college.service;
 
 import com.example.college.dto.CourseRequestDto;
 import com.example.college.dto.CourseResponseDto;
-import com.example.college.exceptions.model.DublicateException;
+import com.example.college.exceptions.model.DuplicateException;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.CourseMapper;
 import com.example.college.model.Course;
@@ -31,7 +31,7 @@ public class CourseService {
             Course course=courseRepo.save(courseMapper.toCourse(courseRequestDto));
             return courseMapper.toCourseResponseDto(course);
         }catch (Exception exception){
-            throw new DublicateException("this code "+ courseRequestDto.getCode() +" exist");
+            throw new DuplicateException("this code "+ courseRequestDto.getCode() +" exist");
         }
     }
 

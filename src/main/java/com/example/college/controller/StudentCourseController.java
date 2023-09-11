@@ -1,8 +1,11 @@
 package com.example.college.controller;
 
 import com.example.college.model.StudentCourse;
+import com.example.college.repository.StudentCourseRepo;
 import com.example.college.service.StudentCourseService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("studentCourse")
@@ -23,5 +26,11 @@ public class StudentCourseController {
         studentCourseService.deleteByStudentIdAndCourseId(studentId, courseId);
     }
 
+
+    @PutMapping("/{studentId}/{courseId}/{degree}")
+    public void updateDegree(@PathVariable Long studentId ,@PathVariable Long courseId,
+                                            @PathVariable Double degree){
+         studentCourseService.updateDegree(studentId,courseId,degree);
+    }
 
 }
