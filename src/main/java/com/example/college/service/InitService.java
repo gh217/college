@@ -76,21 +76,22 @@ public class InitService implements CommandLineRunner {
     }
 
     private void addCourses(){
-        List<Pair<String,String>>pairs=new ArrayList<>();
-        pairs.add(new Pair<>("c++","c++1"));
-        pairs.add(new Pair<>("java","java2"));
-        pairs.add(new Pair<>("pyp","pyp3"));
-        pairs.add(new Pair<>("intro","intro1"));
-        pairs.add(new Pair<>("t5","t5"));
-        pairs.add(new Pair<>("t6","t6"));
-        pairs.add(new Pair<>("t7","t7"));
+        List<Pair<String,String,Double>>pairs=new ArrayList<>();
+        pairs.add(new Pair<>("c++","c++1",60.0));
+        pairs.add(new Pair<>("java","java2",60.0));
+        pairs.add(new Pair<>("pyp","pyp3",60.0));
+        pairs.add(new Pair<>("intro","intro1",60.0));
+        pairs.add(new Pair<>("t5","t5",50.0));
+        pairs.add(new Pair<>("t6","t6",50.0));
+        pairs.add(new Pair<>("t7","t7",50.0));
 
 
 
-        for (Pair<String,String> pair : pairs){
+        for (Pair<String,String,Double> pair : pairs){
             Course course=new Course();
             course.setName(pair.getName());
             course.setCode(pair.getCode());
+            course.setPassedDegree(pair.passedDegree);
             courseRepo.save(course);
         }
     }
@@ -130,9 +131,10 @@ public class InitService implements CommandLineRunner {
     }
     @Data
     @AllArgsConstructor
-    private class Pair<T,T1>{
+    private class Pair<T,T1,T2>{
         T name;
         T1 code;
+        T2 passedDegree;
     }
 
 }

@@ -11,5 +11,6 @@ public class CourseResponseDto {
     private Long id;
     private String code;
     private String name;
+    private Double PassedDegree;
     private Set<Department> departmentSet=new HashSet<>();
 }
