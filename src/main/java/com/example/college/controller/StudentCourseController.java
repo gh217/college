@@ -47,5 +47,9 @@ public class StudentCourseController {
         return studentCourseService.studentCourseResponsePending(studentId);
     }
 
+    @GetMapping("/succeed/{studentId}")
+    public List<StudentCourseResponseDto> studentCourseSucceed(@PathVariable Long studentId){
+        return studentCourseService.studentCourseResponseSucceed(studentId);
+    }
 
 }
