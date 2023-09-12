@@ -41,4 +41,7 @@ public interface StudentCourseRepo extends JpaRepository<StudentCourse,Long> {
     @Query("SELECT sc FROM StudentCourse sc WHERE sc.studentCourseStatus = 'SUCCEED' and sc.student.id= :studentId")
     List<StudentCourse> studentCourseSucceed(Long studentId);
 
+    @Query("SELECT sc FROM StudentCourse sc WHERE sc.studentCourseStatus = 'FAIL' and sc.student.id= :studentId")
+    List<StudentCourse> studentCourseFailed(Long studentId);
+
 }

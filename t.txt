@@ -1,0 +1,5 @@
+minimum degreee
+start and end   ->> student course
+update student api sorted date 
+
+

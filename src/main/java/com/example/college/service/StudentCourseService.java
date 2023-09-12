@@ -155,4 +155,11 @@ public class StudentCourseService {
                 .map(studentCourseMapper::toStudentCourseResponseDto)
                 .toList();
     }
+
+    public List<StudentCourseResponseDto> studentCourseResponseFailed(Long studentId){
+        return studentCourseRepo.studentCourseFailed(studentId)
+                .stream()
+                .map(studentCourseMapper::toStudentCourseResponseDto)
+                .toList();
+    }
 }

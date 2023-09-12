@@ -52,4 +52,9 @@ public class StudentCourseController {
         return studentCourseService.studentCourseResponseSucceed(studentId);
     }
 
+    @GetMapping("/failed/{studentId}")
+    public List<StudentCourseResponseDto> studentCourseFailed(@PathVariable Long studentId){
+        return studentCourseService.studentCourseResponseFailed(studentId);
+    }
+
 }
