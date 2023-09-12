@@ -67,7 +67,7 @@ public class StudentCourseService {
 
     private void checkStudentCourse(Long studentId, Long courseId){
         List<StudentCourse> studentCourseList=
-                studentCourseRepo.studentCourse(studentId,courseId);
+                studentCourseRepo.checkStudentCourse(studentId,courseId);
         if(studentCourseList.isEmpty())return ;
 
         for(StudentCourse studentCourse : studentCourseList){
@@ -79,7 +79,7 @@ public class StudentCourseService {
                 throw new DuplicateException("this course Passed");
             }
         }
-
+        //fail
     }
 
     private void checkCountCourses(Long studentId){
@@ -141,4 +141,11 @@ public class StudentCourseService {
                 .toList();
     }
 
+
+    public List<StudentCourseResponseDto> studentCourseResponsePending(Long studentId){
+        return studentCourseRepo.studentCoursePending(studentId)
+                .stream()
+                .map(studentCourseMapper::toStudentCourseResponseDto)
+                .toList();
+    }
 }

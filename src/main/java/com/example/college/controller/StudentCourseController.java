@@ -37,10 +37,15 @@ public class StudentCourseController {
         return studentCourseService.studentCourseList(studentId);
     }
 
-
     @PutMapping
     public List<StudentCourseResponseDto> updateStatus(){
         return studentCourseService.updateStatus();
     }
+
+    @GetMapping("/pending/{studentId}")
+    public List<StudentCourseResponseDto> studentCoursePending(@PathVariable Long studentId){
+        return studentCourseService.studentCourseResponsePending(studentId);
+    }
+
 
 }
