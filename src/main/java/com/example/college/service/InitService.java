@@ -92,6 +92,7 @@ public class InitService implements CommandLineRunner {
             course.setName(pair.getName());
             course.setCode(pair.getCode());
             course.setPassedDegree(pair.passedDegree);
+            course.setTotalDegree(100d);
             courseRepo.save(course);
         }
     }

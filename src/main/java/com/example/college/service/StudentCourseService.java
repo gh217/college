@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -104,7 +105,7 @@ public class StudentCourseService {
         if(studentCourse.isEmpty())throw new NotFoundException("this id not found");
         studentCourse.get().setDegree(degree);
         //check degree
-        if(degree>=50){
+        if(degree>=studentCourse.get().getCourse().getPassedDegree()){
             studentCourse.get().setStudentCourseStatus(StudentCourseStatus.SUCCEED);
         }else{
             studentCourse.get().setStudentCourseStatus(StudentCourseStatus.FAIL);
@@ -126,7 +127,7 @@ public class StudentCourseService {
         for(StudentCourse studentCourse : studentCourseList){
 
             //pending
-            if(studentCourse.getDegree()==null)continue;
+            if(Objects.equals(studentCourse.getDegree(), studentCourse.getCourse().getPassedDegree()))continue;
             if(studentCourse.getDegree()>=50){
                 studentCourse.setStudentCourseStatus(StudentCourseStatus.SUCCEED);
                 continue;

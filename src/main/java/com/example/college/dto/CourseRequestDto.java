@@ -8,4 +8,5 @@ public class CourseRequestDto {
     private String name;
     private String code;
     private Double PassedDegree;
+    private Double totalDegree;
 }

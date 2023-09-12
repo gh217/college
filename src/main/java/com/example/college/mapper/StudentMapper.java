@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 public class StudentMapper {
 
 
-    private final CourseMapper courseMapper;
+    private final StudentCourseMapper studentCourseMapper;
 
-    public StudentMapper(CourseMapper courseMapper) {
-        this.courseMapper = courseMapper;
+    public StudentMapper(StudentCourseMapper studentCourseMapper) {
+        this.studentCourseMapper = studentCourseMapper;
     }
 
     public Student toStudent(StudentRequestDto studentRequestDto){
@@ -38,9 +38,9 @@ public class StudentMapper {
         studentResponse.setBirthyear(student.getBirthyear());
 
         studentResponse.setDepartment(student.getDepartment());
-        studentResponse.setCourseResponseDtos(student.getStudentCourses()
+        studentResponse.setStudentCourseResponseDtos(student.getStudentCourses()
                 .stream()
-                .map(studentCourse -> courseMapper.toCourseResponseDto(studentCourse.getCourse()))
+                .map(studentCourseMapper::toStudentCourseResponseDto)
                 .collect(Collectors.toSet()));
 
         return studentResponse;

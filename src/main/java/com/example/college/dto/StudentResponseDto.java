@@ -12,6 +12,6 @@ import java.util.Set;
 @Component
 public class StudentResponseDto extends StudentCommonDto {
 
-    private Set<CourseResponseDto> courseResponseDtos;
+    private Set<StudentCourseResponseDto> studentCourseResponseDtos;
 
 }

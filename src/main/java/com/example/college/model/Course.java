@@ -20,7 +20,11 @@ public class Course {
     @Column(unique = true)
     private String code;
 
+    @Column(nullable = false)
     private Double PassedDegree;
+
+    @Column(nullable = false)
+    private Double totalDegree;
 
     private String name;
 

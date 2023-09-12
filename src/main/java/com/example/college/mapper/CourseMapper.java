@@ -13,6 +13,7 @@ public class CourseMapper {
         course.setCode(courseRequestDto.getCode());
         course.setName(courseRequestDto.getName());
         course.setPassedDegree(course.getPassedDegree());
+        course.setTotalDegree(course.getTotalDegree());
         return course;
     }
 
@@ -22,6 +23,7 @@ public class CourseMapper {
         courseResponseDto.setCode(course.getCode());
         courseResponseDto.setName(course.getName());
         courseResponseDto.setPassedDegree(course.getPassedDegree());
+        courseResponseDto.setTotalDegree(course.getTotalDegree());
         return courseResponseDto;
     }
 

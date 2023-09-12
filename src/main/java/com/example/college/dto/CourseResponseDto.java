@@ -12,5 +12,6 @@ public class CourseResponseDto {
     private String code;
     private String name;
     private Double PassedDegree;
+    private Double totalDegree;
     private Set<Department> departmentSet=new HashSet<>();
 }
