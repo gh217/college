@@ -38,5 +38,9 @@ public class StudentCourseController {
     }
 
 
+    @PutMapping
+    public List<StudentCourseResponseDto> updateStatus(){
+        return studentCourseService.updateStatus();
+    }
 
 }

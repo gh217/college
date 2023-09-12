@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -38,7 +39,6 @@ public class StudentCourseService {
     }
 
     public void addCourse(Long studentId , Long courseId) {
-
 
         // check duplicate succeed or fail or null to register this course
         checkStudentCourse(studentId,courseId);
@@ -66,15 +66,20 @@ public class StudentCourseService {
     }
 
     private void checkStudentCourse(Long studentId, Long courseId){
-        Optional<StudentCourse> studentCourse=
+        List<StudentCourse> studentCourseList=
                 studentCourseRepo.studentCourse(studentId,courseId);
-        if(studentCourse.isEmpty())return ;
+        if(studentCourseList.isEmpty())return ;
 
-        if(studentCourse.get().getStudentCourseStatus()== StudentCourseStatus.PENDING)
-            throw new DuplicateException("this course Pending");
+        for(StudentCourse studentCourse : studentCourseList){
+            if(studentCourse.getStudentCourseStatus().name().equals("PENDING")){
+                throw new DuplicateException("this course Already Exist");
+            }
 
-        if(studentCourse.get().getStudentCourseStatus()== StudentCourseStatus.SUCCEED)
-            throw new DuplicateException("this course Done");
+            if(studentCourse.getStudentCourseStatus().name().equals("SUCCEED")){
+                throw new DuplicateException("this course Passed");
+            }
+        }
+
     }
 
     private void checkCountCourses(Long studentId){
@@ -94,13 +99,16 @@ public class StudentCourseService {
 
     public void updateDegree(Long studentId, Long courseId,Double degree){
 
-        Optional<StudentCourse> studentCourse= studentCourseRepo.studentCourse(studentId,courseId);
+        Optional<StudentCourse> studentCourse= studentCourseRepo.studentCourseUpdate(studentId,courseId);
 
         if(studentCourse.isEmpty())throw new NotFoundException("this id not found");
-        if(studentCourse.get().getCourse().getId()!=courseId)throw new NotFoundException("this course not Register");
-
         studentCourse.get().setDegree(degree);
-
+        //check degree
+        if(degree>=50){
+            studentCourse.get().setStudentCourseStatus(StudentCourseStatus.SUCCEED);
+        }else{
+            studentCourse.get().setStudentCourseStatus(StudentCourseStatus.FAIL);
+        }
         studentCourseRepo.save(studentCourse.get());
     }
 
@@ -111,5 +119,26 @@ public class StudentCourseService {
                 .map(studentCourseMapper::toStudentCourseResponseDto)
                 .toList();
     }
-    
+
+    public List<StudentCourseResponseDto> updateStatus(){
+
+        List<StudentCourse>studentCourseList=studentCourseRepo.findAll();
+        for(StudentCourse studentCourse : studentCourseList){
+
+            //pending
+            if(studentCourse.getDegree()==null)continue;
+            if(studentCourse.getDegree()>=50){
+                studentCourse.setStudentCourseStatus(StudentCourseStatus.SUCCEED);
+                continue;
+            }
+            studentCourse.setStudentCourseStatus(StudentCourseStatus.FAIL);
+        }
+        studentCourseRepo.saveAll(studentCourseList);
+
+        return studentCourseList
+                .stream()
+                .map(studentCourseMapper::toStudentCourseResponseDto)
+                .toList();
+    }
+
 }
