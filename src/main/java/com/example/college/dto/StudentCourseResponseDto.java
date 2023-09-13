@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Setter
 @Getter
 public class StudentCourseResponseDto {
@@ -14,5 +16,8 @@ public class StudentCourseResponseDto {
     private String CourseName ;
     private Long courseId;
     private Double degree;
-    StudentCourseStatus studentCourseStatus;
+    private StudentCourseStatus studentCourseStatus;
+    private Date StartCourse;
+    private Date endCourse;
+
 }

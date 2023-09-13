@@ -1,8 +1,9 @@
 package com.example.college.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 @Entity
@@ -26,6 +27,12 @@ public class StudentCourse {
     private Course course;
 
     private Double degree;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date StartCourse=new Date();
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endCourse;
 
     @Enumerated(EnumType.STRING)
     StudentCourseStatus studentCourseStatus=StudentCourseStatus.PENDING;

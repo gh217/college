@@ -28,8 +28,8 @@ public interface StudentCourseRepo extends JpaRepository<StudentCourse,Long> {
     Integer countStudentsWithPendingCourseStatus(Long studentId);
 
 
-    @Query("SELECT sc FROM StudentCourse sc WHERE sc.student.id = :studentId")
-    List<StudentCourse> studentCourse( Long studentId);
+    @Query("SELECT sc FROM StudentCourse sc WHERE sc.student.id = :studentId ORDER BY sc.StartCourse asc")
+    List<StudentCourse> allStudentCourse(Long studentId);
 
     @Query("SELECT sc FROM StudentCourse sc WHERE sc.student.id = :studentId AND sc.course.id = :courseId and sc.studentCourseStatus='PENDING'")
     Optional<StudentCourse> studentCourseUpdate( Long studentId,Long courseId);
@@ -44,4 +44,7 @@ public interface StudentCourseRepo extends JpaRepository<StudentCourse,Long> {
     @Query("SELECT sc FROM StudentCourse sc WHERE sc.studentCourseStatus = 'FAIL' and sc.student.id= :studentId")
     List<StudentCourse> studentCourseFailed(Long studentId);
 
+//    @Override
+//    @Query("SELECT e FROM StudentCourse e ORDER BY e.StartCourse asc ")
+//    List<StudentCourse> findAll();
 }

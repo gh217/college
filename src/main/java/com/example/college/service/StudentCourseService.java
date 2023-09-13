@@ -15,10 +15,10 @@ import com.example.college.repository.StudentRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -110,11 +110,12 @@ public class StudentCourseService {
         }else{
             studentCourse.get().setStudentCourseStatus(StudentCourseStatus.FAIL);
         }
+        studentCourse.get().setEndCourse(new Date());
         studentCourseRepo.save(studentCourse.get());
     }
 
     public List<StudentCourseResponseDto> studentCourseList(Long studentId){
-        List<StudentCourse> studentCourseList= studentCourseRepo.studentCourse(studentId);
+        List<StudentCourse> studentCourseList= studentCourseRepo.allStudentCourse(studentId);
         return studentCourseList
                 .stream()
                 .map(studentCourseMapper::toStudentCourseResponseDto)
@@ -127,6 +128,7 @@ public class StudentCourseService {
         for(StudentCourse studentCourse : studentCourseList){
 
             //pending
+            if(studentCourse.getDegree()==null)continue;
             if(Objects.equals(studentCourse.getDegree(), studentCourse.getCourse().getPassedDegree()))continue;
             if(studentCourse.getDegree()>=50){
                 studentCourse.setStudentCourseStatus(StudentCourseStatus.SUCCEED);

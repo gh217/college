@@ -38,6 +38,7 @@ public class StudentMapper {
         studentResponse.setBirthyear(student.getBirthyear());
 
         studentResponse.setDepartment(student.getDepartment());
+
         studentResponse.setStudentCourseResponseDtos(student.getStudentCourses()
                 .stream()
                 .map(studentCourseMapper::toStudentCourseResponseDto)
