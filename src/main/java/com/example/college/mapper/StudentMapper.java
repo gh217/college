@@ -39,10 +39,10 @@ public class StudentMapper {
 
         studentResponse.setDepartment(student.getDepartment());
 
-        studentResponse.setStudentCourseResponseDtos(student.getStudentCourses()
+        studentResponse.setStudentCourseResponseDtoList(student.getStudentCourseList()
                 .stream()
                 .map(studentCourseMapper::toStudentCourseResponseDto)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
 
         return studentResponse;
     }

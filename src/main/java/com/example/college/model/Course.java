@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Setter
@@ -33,24 +35,24 @@ public class Course {
             name = "department_Course",
             joinColumns = @JoinColumn(name = "Course_id"),
             inverseJoinColumns = @JoinColumn(name = "Department_id"))
-    private Set<Department> departmentSet=new HashSet<>();
+    private List<Department> departmentList=new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
             name = "Professor_course",
             joinColumns = @JoinColumn(name = "Course_id"),
             inverseJoinColumns = @JoinColumn(name = "Professor_id"))
-    private Set<Professor> professorSet = new HashSet<>();
+    private List<Professor> professorList = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
             name = "Assisatnt_course",
             joinColumns = @JoinColumn(name = "Course_id"),
             inverseJoinColumns = @JoinColumn(name = "Assisatnt_id"))
-    private Set<Course> courseSet = new HashSet<>();
+    private List<Course> courseList = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST)
-    private Set<StudentCourse> studentCourses = new HashSet<>();
+    private List<StudentCourse> studentCourseList = new ArrayList<>();
 
 }

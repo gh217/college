@@ -19,10 +19,10 @@ public class DepartmentMapper {
         departmentResponseDto.setId(department.getId());
         departmentResponseDto.setName(department.getName());
         departmentResponseDto.setCollege(department.getCollege());
-        departmentResponseDto.setProfessorSet(department.getProfessorSet());
-        departmentResponseDto.setAssistantSet(department.getAssistantSet());
-        departmentResponseDto.setCourseSet(department.getCourseSet());
-        departmentResponseDto.setStudentSet(department.getStudentSet());
+        departmentResponseDto.setProfessorList(department.getProfessorList());
+        departmentResponseDto.setAssistantList(department.getAssistantList());
+        departmentResponseDto.setCourseList(department.getCourseList());
+        departmentResponseDto.setStudentList(department.getStudentList());
         return departmentResponseDto;
     }
 }

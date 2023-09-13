@@ -7,9 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
@@ -32,7 +30,7 @@ public class Student {
 
     @JsonIgnore
     @OneToMany(mappedBy = "student",cascade = CascadeType.PERSIST)
-    private Set<StudentCourse> studentCourses = new HashSet<>();
+    private List<StudentCourse> studentCourseList = new ArrayList<>();
 
 
 }

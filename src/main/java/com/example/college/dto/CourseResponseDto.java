@@ -3,7 +3,9 @@ package com.example.college.dto;
 import com.example.college.model.Department;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -13,5 +15,5 @@ public class CourseResponseDto {
     private String name;
     private Double PassedDegree;
     private Double totalDegree;
-    private Set<Department> departmentSet=new HashSet<>();
+    private List<Department> departmentList=new ArrayList<>();
 }

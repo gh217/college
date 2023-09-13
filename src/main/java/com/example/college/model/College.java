@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import jdk.dynalink.linker.LinkerServices;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -17,6 +19,6 @@ public class College {
     private String name;
 
     @OneToMany(mappedBy = "college",cascade = CascadeType.ALL)
-    private Set<Department> departmentSet=new HashSet<>();
+    private List<Department> departmentList=new ArrayList<>();
 
 }

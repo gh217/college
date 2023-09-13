@@ -58,8 +58,8 @@ public class StudentCourseService {
 
         studentCourse=
                studentCourseRepo.save(studentCourse);
-        course.get().getStudentCourses().add(studentCourse);
-        student.get().getStudentCourses().add(studentCourse);
+        course.get().getStudentCourseList().add(studentCourse);
+        student.get().getStudentCourseList().add(studentCourse);
 
         studentCourseRepo.save(studentCourse);
         studentRepository.save(student.get());

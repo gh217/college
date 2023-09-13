@@ -18,7 +18,7 @@ public class ProfessorMapper {
         ProfessorResponseDto assistantResponse =new ProfessorResponseDto();
         assistantResponse.setId(professor.getId());
         assistantResponse.setName(professor.getName());
-        assistantResponse.setCourseSet(professor.getCourseSet());
+        assistantResponse.setCourseList(professor.getCourseList());
         return assistantResponse;
     }
 

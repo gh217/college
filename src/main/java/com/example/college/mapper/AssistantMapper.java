@@ -18,7 +18,7 @@ public class AssistantMapper {
         AssistantResponseDto assistantResponseDto =new AssistantResponseDto();
         assistantResponseDto.setId(assistant.getId());
         assistantResponseDto.setName(assistant.getName());
-        assistantResponseDto.setCourseSet(assistant.getCourseSet());
+        assistantResponseDto.setCourseList(assistant.getCourseList());
         return assistantResponseDto;
     }
 }

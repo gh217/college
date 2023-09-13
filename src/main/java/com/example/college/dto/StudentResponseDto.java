@@ -6,12 +6,13 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @Component
 public class StudentResponseDto extends StudentCommonDto {
 
-    private Set<StudentCourseResponseDto> studentCourseResponseDtos;
+    private List<StudentCourseResponseDto> studentCourseResponseDtoList;
 
 }

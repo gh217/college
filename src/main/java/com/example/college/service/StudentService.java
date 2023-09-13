@@ -1,17 +1,21 @@
 package com.example.college.service;
 
+import com.example.college.dto.StudentCourseResponseDto;
 import com.example.college.dto.StudentRequestDto;
 import com.example.college.dto.StudentResponseDto;
 import com.example.college.dto.StudentUpdateRequestDto;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.StudentMapper;
 import com.example.college.model.Student;
+import com.example.college.model.StudentCourse;
 import com.example.college.repository.StudentRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class StudentService {
 
@@ -45,10 +49,31 @@ public class StudentService {
         return studentMapper.toStudentResponseDto(student.get());
     }
 
+//    public StudentResponseDto findById(long id){
+//        Optional<Student> student=studentRepo.findById(id);
+//        if(student.isEmpty())throw new NotFoundException("This id "+ id+" not found");
+//        return studentMapper.toStudentResponseDto(student.get());
+//    }
+
     public StudentResponseDto findById(long id){
         Optional<Student> student=studentRepo.findById(id);
         if(student.isEmpty())throw new NotFoundException("This id "+ id+" not found");
-        return studentMapper.toStudentResponseDto(student.get());
+
+        StudentResponseDto studentResponseDto= studentMapper.toStudentResponseDto(student.get());
+
+        List<StudentCourseResponseDto>studentCourseResponseDtoList=
+        studentResponseDto.
+                getStudentCourseResponseDtoList()
+                .stream()
+                .sorted(Comparator.comparing(StudentCourseResponseDto::getStartCourse))
+                .toList();
+
+        for (StudentCourseResponseDto studentCourseResponseDto1 : studentCourseResponseDtoList){
+            log.info(studentCourseResponseDto1.getCourseId()+"  \n");
+        }
+
+        studentResponseDto.setStudentCourseResponseDtoList(studentCourseResponseDtoList);
+        return studentResponseDto;
     }
 
     public List<StudentResponseDto> findAll(){
