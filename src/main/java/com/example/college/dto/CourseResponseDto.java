@@ -1,6 +1,7 @@
 package com.example.college.dto;
 
 import com.example.college.model.Department;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Data
 public class CourseResponseDto {
     private Long id;
+
     private String code;
     private String name;
     private Double PassedDegree;

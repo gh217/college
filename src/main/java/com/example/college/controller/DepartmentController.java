@@ -3,6 +3,7 @@ package com.example.college.controller;
 import com.example.college.dto.DepartmentRequestDto;
 import com.example.college.dto.DepartmentResponseDto;
 import com.example.college.service.DepartmentService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,12 +20,12 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public DepartmentResponseDto addDepartment(@RequestBody DepartmentRequestDto departmentRequestDto){
+    public DepartmentResponseDto addDepartment(@Valid  @RequestBody DepartmentRequestDto departmentRequestDto){
         return departmentService.addDepartment(departmentRequestDto);
     }
 
     @PutMapping("/{id}")
-    public DepartmentResponseDto updateDepartment(@PathVariable Long id, @RequestBody DepartmentRequestDto departmentRequestDto){
+    public DepartmentResponseDto updateDepartment(@PathVariable Long id,@Valid @RequestBody DepartmentRequestDto departmentRequestDto){
         return departmentService.updateDepartment(id, departmentRequestDto);
     }
 

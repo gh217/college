@@ -2,6 +2,9 @@ package com.example.college.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,11 +26,18 @@ public class Course {
     private String code;
 
     @Column(nullable = false)
+    @NotNull
+    @Min(value = 0)
+    @Max(value = 100)
     private Double PassedDegree;
 
     @Column(nullable = false)
+    @NotNull
+    @Min(value = 0)
+    @Max(value = 100)
     private Double totalDegree;
 
+    @NotNull
     private String name;
 
     @ManyToMany

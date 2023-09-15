@@ -1,9 +1,7 @@
 package com.example.college.exceptions;
 
-import com.example.college.exceptions.model.CoursePendingLimitedException;
-import com.example.college.exceptions.model.DuplicateException;
-import com.example.college.exceptions.model.ErrorResponseApiException;
-import com.example.college.exceptions.model.NotFoundException;
+import com.example.college.exceptions.model.*;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,4 +35,25 @@ public class ExceptionController {
         errorResponseApiException.setError(coursePendingLimitedException.getMessage());
         return new ResponseEntity<>(errorResponseApiException, HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
     }
+
+    //ConstraintViolationException
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseApiException>validation(ConstraintViolationException exception){
+
+        ErrorResponseApiException errorResponseApiException=new ErrorResponseApiException();
+        errorResponseApiException.setError(exception.getMessage());
+        return new ResponseEntity<>(errorResponseApiException,HttpStatus.BAD_REQUEST);
+    }
+
+    //BadRequestException
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseApiException>badRequest(BadRequestException exception){
+
+        ErrorResponseApiException errorResponseApiException=new ErrorResponseApiException();
+        errorResponseApiException.setError(exception.getMessage());
+        return new ResponseEntity<>(errorResponseApiException,HttpStatus.BAD_REQUEST);
+    }
+
 }

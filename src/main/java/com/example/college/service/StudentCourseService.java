@@ -1,6 +1,7 @@
 package com.example.college.service;
 
 import com.example.college.dto.StudentCourseResponseDto;
+import com.example.college.exceptions.model.BadRequestException;
 import com.example.college.exceptions.model.CoursePendingLimitedException;
 import com.example.college.exceptions.model.DuplicateException;
 import com.example.college.exceptions.model.NotFoundException;
@@ -12,6 +13,7 @@ import com.example.college.model.StudentCourseStatus;
 import com.example.college.repository.CourseRepo;
 import com.example.college.repository.StudentCourseRepo;
 import com.example.college.repository.StudentRepo;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -105,6 +107,8 @@ public class StudentCourseService {
         if(studentCourse.isEmpty())throw new NotFoundException("this id not found");
         studentCourse.get().setDegree(degree);
         //check degree
+
+        if(degree>studentCourse.get().getCourse().getPassedDegree())throw new BadRequestException("you passed the course degree");
         if(degree>=studentCourse.get().getCourse().getPassedDegree()){
             studentCourse.get().setStudentCourseStatus(StudentCourseStatus.SUCCEED);
         }else{

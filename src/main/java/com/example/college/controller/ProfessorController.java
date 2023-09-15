@@ -4,6 +4,7 @@ package com.example.college.controller;
 import com.example.college.dto.ProfessorRequestDto;
 import com.example.college.dto.ProfessorResponseDto;
 import com.example.college.service.ProfessorService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ProfessorController {
 
 
     @PostMapping
-    public ProfessorResponseDto AddProfessor(@RequestBody ProfessorRequestDto professorRequestDto){
+    public ProfessorResponseDto AddProfessor(@Valid @RequestBody ProfessorRequestDto professorRequestDto){
         return professorService.addProfessor(professorRequestDto);
     }
 

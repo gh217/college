@@ -4,6 +4,7 @@ import com.example.college.dto.StudentRequestDto;
 import com.example.college.dto.StudentResponseDto;
 import com.example.college.dto.StudentUpdateRequestDto;
 import com.example.college.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,8 @@ public class StudentController {
     }
 
     @PostMapping
-    public StudentResponseDto add(@RequestBody StudentRequestDto studentRequestDto){
+    public StudentResponseDto add(@Valid @RequestBody StudentRequestDto studentRequestDto){
+
         return studentService.add(studentRequestDto);
     }
 

@@ -20,8 +20,6 @@ public class StudentCourse {
     @JoinColumn(name = "student_id")
     private Student student;
 
-
-//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;

@@ -1,7 +1,9 @@
 package com.example.college.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,6 +16,7 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String name;
 
     @ManyToMany

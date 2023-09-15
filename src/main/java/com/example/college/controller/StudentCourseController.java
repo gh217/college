@@ -2,6 +2,7 @@ package com.example.college.controller;
 
 import com.example.college.dto.StudentCourseResponseDto;
 import com.example.college.service.StudentCourseService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class StudentCourseController {
     }
 
     @PostMapping("/{studentId}/{courseId}")
-    public void addCourseToStudent(@PathVariable Long studentId ,@PathVariable Long courseId) {
+    public void addCourseToStudent(@Valid  @PathVariable Long studentId , @PathVariable Long courseId) {
         studentCourseService.addCourse(studentId, courseId);
     }
 

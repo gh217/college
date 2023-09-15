@@ -3,6 +3,7 @@ package com.example.college.controller;
 import com.example.college.dto.AssistantRequestDto;
 import com.example.college.dto.AssistantResponseDto;
 import com.example.college.service.AssistantService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class AssistantController {
     }
 
     @PostMapping
-    public AssistantResponseDto AddAssistant(@RequestBody AssistantRequestDto assistantRequestDto){
+    public AssistantResponseDto AddAssistant(@Valid @RequestBody AssistantRequestDto assistantRequestDto){
         return assistantService.addAssistant(assistantRequestDto);
     }
 

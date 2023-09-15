@@ -3,6 +3,7 @@ package com.example.college.controller;
 import com.example.college.dto.CourseRequestDto;
 import com.example.college.dto.CourseResponseDto;
 import com.example.college.service.CourseService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public CourseResponseDto addCourse(@RequestBody CourseRequestDto courseRequestDto){
+    public CourseResponseDto addCourse(@Valid  @RequestBody CourseRequestDto courseRequestDto){
         return courseService.addCourse(courseRequestDto);
     }
 
