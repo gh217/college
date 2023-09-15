@@ -108,7 +108,7 @@ public class StudentCourseService {
         studentCourse.get().setDegree(degree);
         //check degree
 
-        if(degree>studentCourse.get().getCourse().getPassedDegree())throw new BadRequestException("you passed the course degree");
+        if(degree>studentCourse.get().getCourse().getPassedDegree())throw new BadRequestException("you Limited the course degree");
         if(degree>=studentCourse.get().getCourse().getPassedDegree()){
             studentCourse.get().setStudentCourseStatus(StudentCourseStatus.SUCCEED);
         }else{
