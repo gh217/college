@@ -59,7 +59,7 @@ public class Course {
             name = "Assisatnt_course",
             joinColumns = @JoinColumn(name = "Course_id"),
             inverseJoinColumns = @JoinColumn(name = "Assisatnt_id"))
-    private List<Course> courseList = new ArrayList<>();
+    private List<Assistant> assistantList = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST)
