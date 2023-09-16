@@ -5,6 +5,7 @@ import com.example.college.dto.ProfessorRequestDto;
 import com.example.college.dto.ProfessorResponseDto;
 import com.example.college.service.ProfessorService;
 import jakarta.validation.Valid;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,4 +42,10 @@ public class ProfessorController {
         return professorService.findAllProfessor();
     }
 
+
+    // start relation to course
+    @PostMapping("/addCourse/{professorId}/{courseId}")
+    public void addCourseToProfessor(@PathVariable Long professorId ,@PathVariable Long courseId){
+        professorService.addCourseToProfessor(professorId,courseId);
+    }
 }

@@ -4,7 +4,9 @@ import com.example.college.dto.ProfessorRequestDto;
 import com.example.college.dto.ProfessorResponseDto;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.ProfessorMapper;
+import com.example.college.model.Course;
 import com.example.college.model.Professor;
+import com.example.college.repository.CourseRepo;
 import com.example.college.repository.ProfessorRepo;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,13 @@ import java.util.Optional;
 public class ProfessorService {
     private final ProfessorRepo professorRepo;
     private final ProfessorMapper professorMapper;
+    private final CourseRepo courseRepo;
 
-    public ProfessorService(ProfessorRepo professorRepo, ProfessorMapper professorMapper) {
+
+    public ProfessorService(ProfessorRepo professorRepo, ProfessorMapper professorMapper, CourseRepo courseRepo) {
         this.professorRepo = professorRepo;
         this.professorMapper = professorMapper;
+        this.courseRepo = courseRepo;
     }
 
 
@@ -52,5 +57,19 @@ public class ProfessorService {
         Optional<Professor> professor=professorRepo.findById(id);
         if(professor.isEmpty())throw new NotFoundException("this id "+id +" Not Found");
         return professor.get();
+    }
+
+    public void addCourseToProfessor(Long professorId , Long courseId){
+        Optional<Professor> professor=professorRepo.findById(professorId);
+        Optional<Course> course=courseRepo.findById(courseId);
+
+        if(professor.isEmpty())throw new NotFoundException("prof id not found");
+        if(course.isEmpty())throw new NotFoundException("student id not found");
+
+        professor.get().getCourseList().add(course.get());
+        course.get().getProfessorList().add(professor.get());
+
+        professorRepo.save(professor.get());
+//        courseRepo.save(course.get());
     }
 }

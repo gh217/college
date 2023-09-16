@@ -47,11 +47,12 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "Department_id"))
     private List<Department> departmentList=new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "Professor_course",
-            joinColumns = @JoinColumn(name = "Course_id"),
-            inverseJoinColumns = @JoinColumn(name = "Professor_id"))
+    @JsonIgnore
+    @ManyToMany(mappedBy = "courseList")
+//    @JoinTable(
+//            name = "Professor_course",
+//            joinColumns = @JoinColumn(name = "Course_id"),
+//            inverseJoinColumns = @JoinColumn(name = "Professor_id"))
     private List<Professor> professorList = new ArrayList<>();
 
     @ManyToMany

@@ -1,5 +1,6 @@
 package com.example.college.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -26,7 +27,8 @@ public class Professor {
             inverseJoinColumns = @JoinColumn(name = "Department_id"))
     private List<Department> departmentList=new ArrayList<>();
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "Professor_course",
             joinColumns = @JoinColumn(name = "Professor_id"),
