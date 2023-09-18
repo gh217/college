@@ -49,10 +49,6 @@ public class Course {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "courseList")
-//    @JoinTable(
-//            name = "Professor_course",
-//            joinColumns = @JoinColumn(name = "Course_id"),
-//            inverseJoinColumns = @JoinColumn(name = "Professor_id"))
     private List<Professor> professorList = new ArrayList<>();
 
     @ManyToMany

@@ -48,4 +48,12 @@ public class ProfessorController {
     public void addCourseToProfessor(@PathVariable Long professorId ,@PathVariable Long courseId){
         professorService.addCourseToProfessor(professorId,courseId);
     }
+
+    @DeleteMapping("/deleteCourse/{professorId}/{courseId}")
+    public void deleteCourseToProfessor(@PathVariable Long professorId ,@PathVariable Long courseId){
+        professorService.deleteCourseToProfessor(professorId,courseId);
+    }
+
+
+
 }
