@@ -40,7 +40,6 @@ public class ExceptionController {
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponseApiException>validation(ConstraintViolationException exception){
-
         ErrorResponseApiException errorResponseApiException=new ErrorResponseApiException();
         errorResponseApiException.setError(exception.getMessage());
         return new ResponseEntity<>(errorResponseApiException,HttpStatus.BAD_REQUEST);
