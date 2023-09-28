@@ -45,6 +45,12 @@ public class CollegeService {
         collegeRepo.save(college.get());
     }
 
+    public CollegeResponseDto findCollegeById(Long collegeId ){
+        Optional<College> college=collegeRepo.findById(collegeId);
+        if(college.isEmpty())throw new NotFoundException("This is Not Found");
+        return collegeMapper.toCollegeResponseDto(college.get());
+    }
+
     // relation
 
     public CollegeResponseDto addDepartment(Long collegeId , DepartmentRequestDto departmentRequestDto){

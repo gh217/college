@@ -27,9 +27,14 @@ public class CollegeController {
         collegeService.updateCollege(id,collegeRequestDto);
     }
 
+    @GetMapping("/{collegeId}")
+    public CollegeResponseDto addDepartment(@PathVariable Long collegeId){
+        return collegeService.findCollegeById(collegeId);
+    }
     //relation add department
     @PostMapping("/{collegeId}")
     public CollegeResponseDto addDepartment(@PathVariable Long collegeId, @Valid @RequestBody DepartmentRequestDto departmentRequestDto){
         return collegeService.addDepartment(collegeId,departmentRequestDto);
     }
+    
 }
