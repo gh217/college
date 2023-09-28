@@ -16,8 +16,10 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "College_id")
     private College college;

@@ -2,7 +2,9 @@ package com.example.college.controller;
 
 import com.example.college.dto.CollegeRequestDto;
 import com.example.college.dto.CollegeResponseDto;
+import com.example.college.dto.DepartmentRequestDto;
 import com.example.college.service.CollegeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,5 +25,11 @@ public class CollegeController {
     @PutMapping("/{id}")
     public void updateCollege(@PathVariable Long id,@RequestBody CollegeRequestDto collegeRequestDto){
         collegeService.updateCollege(id,collegeRequestDto);
+    }
+
+    //relation add department
+    @PostMapping("/{collegeId}")
+    public CollegeResponseDto addDepartment(@PathVariable Long collegeId, @Valid @RequestBody DepartmentRequestDto departmentRequestDto){
+        return collegeService.addDepartment(collegeId,departmentRequestDto);
     }
 }

@@ -18,7 +18,6 @@ public class DepartmentMapper {
         DepartmentResponseDto departmentResponseDto =new DepartmentResponseDto();
         departmentResponseDto.setId(department.getId());
         departmentResponseDto.setName(department.getName());
-        departmentResponseDto.setCollege(department.getCollege());
         departmentResponseDto.setProfessorList(department.getProfessorList());
         departmentResponseDto.setAssistantList(department.getAssistantList());
         departmentResponseDto.setCourseList(department.getCourseList());
