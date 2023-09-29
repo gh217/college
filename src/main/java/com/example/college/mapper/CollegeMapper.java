@@ -25,7 +25,7 @@ public class CollegeMapper {
     public CollegeResponseDto toCollegeResponseDto(College college){
         CollegeResponseDto collegeResponseDto = new CollegeResponseDto();
         collegeResponseDto.setId(college.getId());
-        college.setName(college.getName());
+        collegeResponseDto.setName(college.getName());
         collegeResponseDto.setDepartmentResponseDtoList(
                 college.getDepartmentList()
                         .stream()
