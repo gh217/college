@@ -34,7 +34,7 @@ public class StudentCourseController {
     }
 
     @GetMapping("/{studentId}")
-    public List<StudentCourseResponseDto> updateDegree(@PathVariable Long studentId ){
+    public List<StudentCourseResponseDto> findStudentCourse(@PathVariable Long studentId ){
         return studentCourseService.studentCourseList(studentId);
     }
 
