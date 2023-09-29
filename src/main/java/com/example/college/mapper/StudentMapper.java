@@ -16,6 +16,7 @@ public class StudentMapper {
 
     private final StudentCourseMapper studentCourseMapper;
 
+
     public StudentMapper(StudentCourseMapper studentCourseMapper) {
         this.studentCourseMapper = studentCourseMapper;
     }
@@ -38,6 +39,10 @@ public class StudentMapper {
         studentResponse.setBirthyear(student.getBirthyear());
 
         studentResponse.setDepartment(student.getDepartment());
+
+        if(student.getDepartment()!=null&&student.getDepartment().getCollege()!=null){
+            studentResponse.setCollegeName(student.getDepartment().getCollege().getName());
+        }
 
         studentResponse.setStudentCourseResponseDtoList(student.getStudentCourseList()
                 .stream()

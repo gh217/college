@@ -14,5 +14,6 @@ public abstract class StudentCommonDto {
     private int birthmonth;
     private int birthyear;
     private Department department;
+    private String collegeName;
 //    private Set<Course> courseSet = new HashSet<>();
 }
