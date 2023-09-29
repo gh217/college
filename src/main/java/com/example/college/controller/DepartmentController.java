@@ -1,8 +1,10 @@
 package com.example.college.controller;
 
+import com.example.college.dto.CollegeResponseDto;
 import com.example.college.dto.DepartmentRequestDto;
 import com.example.college.dto.DepartmentResponseDto;
 import com.example.college.service.DepartmentService;
+import com.example.college.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +45,13 @@ public class DepartmentController {
     public List<DepartmentResponseDto> findAll(){
         return departmentService.findAll();
     }
+
+    // relation with student
+    @PostMapping("/{departmentId}/{studentId}")
+    public void addStudentToDepartment(@PathVariable Long departmentId, @PathVariable Long studentId  ){
+         departmentService.addStudentToDepartment(departmentId,studentId);
+    }
+
 
 
 }

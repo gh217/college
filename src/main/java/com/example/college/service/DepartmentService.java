@@ -4,8 +4,11 @@ import com.example.college.dto.DepartmentRequestDto;
 import com.example.college.dto.DepartmentResponseDto;
 import com.example.college.exceptions.model.NotFoundException;
 import com.example.college.mapper.DepartmentMapper;
+import com.example.college.mapper.StudentMapper;
 import com.example.college.model.Department;
+import com.example.college.model.Student;
 import com.example.college.repository.DepartmentRepo;
+import com.example.college.repository.StudentRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +20,14 @@ public class DepartmentService {
     private final DepartmentRepo departmentRepo;
     private final DepartmentMapper departmentMapper;
 
-    public DepartmentService(DepartmentRepo departmentRepo, DepartmentMapper departmentMapper) {
+    private final StudentRepo studentRepo;
+    private final StudentMapper studentMapper;
+
+    public DepartmentService(DepartmentRepo departmentRepo, DepartmentMapper departmentMapper, StudentRepo studentRepo, StudentMapper studentMapper) {
         this.departmentRepo = departmentRepo;
         this.departmentMapper = departmentMapper;
+        this.studentRepo = studentRepo;
+        this.studentMapper = studentMapper;
     }
 
     public DepartmentResponseDto addDepartment(DepartmentRequestDto departmentRequestDto){
@@ -64,4 +72,23 @@ public class DepartmentService {
                 .stream()
                 .map(departmentMapper::toDepartmentResponseDto).toList();
     }
+
+    // relation with student
+
+    public void addStudentToDepartment(Long departmentId , Long studentId){
+        addUpdateStudentToCourse(departmentId,studentId);
+    }
+
+    private void addUpdateStudentToCourse(Long departmentId , Long studentId){
+        Optional<Department> department=departmentRepo.findById(departmentId);
+        if(department.isEmpty())throw new NotFoundException("Department ID not found");
+        Optional<Student> student=studentRepo.findById(studentId);
+        if(student.isEmpty())throw new NotFoundException("Student ID not found");
+
+        department.get().getStudentList().add(student.get());
+        student.get().setDepartment(department.get());
+
+        departmentRepo.save(department.get());
+    }
+
 }
