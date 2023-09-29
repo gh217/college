@@ -52,6 +52,10 @@ public class DepartmentController {
          departmentService.addStudentToDepartment(departmentId,studentId);
     }
 
+    @PutMapping("/{departmentId}/{studentId}")
+    public void updateStudentToDepartment(@PathVariable Long departmentId, @PathVariable Long studentId  ){
+        departmentService.addStudentToDepartment(departmentId,studentId);
+    }
 
 
 }

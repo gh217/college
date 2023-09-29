@@ -79,6 +79,10 @@ public class DepartmentService {
         addUpdateStudentToCourse(departmentId,studentId);
     }
 
+    public void updateStudentToDepartment(Long departmentId , Long studentId){
+        addUpdateStudentToCourse(departmentId,studentId);
+    }
+
     private void addUpdateStudentToCourse(Long departmentId , Long studentId){
         Optional<Department> department=departmentRepo.findById(departmentId);
         if(department.isEmpty())throw new NotFoundException("Department ID not found");
